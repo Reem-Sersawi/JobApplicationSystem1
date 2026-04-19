@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ColorPicker?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox fx:id="rootPane" spacing="10" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="jobapplicationsystem1.FXMLDocumentController">
+    
+    <padding>
+        <Insets bottom="15" left="15" right="15" top="10" />
+    </padding>
+    
+    <!-- Menu Bar -->
+    <MenuBar>
+        <menus>
+            <Menu text="File">
+                <items>
+                    <MenuItem onAction="#handleExit" text="Exit" />
+                </items>
+            </Menu>
+            <Menu text="Appearance">
+                <items>
+                    <Menu text="Font Family">
+                        <items>
+                            <MenuItem onAction="#setFontArial" text="Arial" />
+                            <MenuItem onAction="#setFontTimes" text="Times New Roman" />
+                            <MenuItem onAction="#setFontVerdana" text="Verdana" />
+                        </items>
+                    </Menu>
+                    <Menu text="Font Size">
+                        <items>
+                            <MenuItem onAction="#setFontSizeSmall" text="Small (12px)" />
+                            <MenuItem onAction="#setFontSizeMedium" text="Medium (16px)" />
+                            <MenuItem onAction="#setFontSizeLarge" text="Large (20px)" />
+                        </items>
+                    </Menu>
+                    <Menu text="Font Style">
+                        <items>
+                            <MenuItem onAction="#setFontNormal" text="Normal" />
+                            <MenuItem onAction="#setFontBold" text="Bold" />
+                            <MenuItem onAction="#setFontItalic" text="Italic" />
+                        </items>
+                    </Menu>
+                </items>
+            </Menu>
+            <Menu text="Help">
+                <items>
+                    <MenuItem onAction="#showAbout" text="About" />
+                </items>
+            </Menu>
+        </menus>
+    </MenuBar>
+    
+    <Separator>
+        <VBox.margin>
+            <Insets bottom="5" top="5" />
+        </VBox.margin>
+    </Separator>
+    
+    <!-- Title -->
+    <Label alignment="CENTER" style="-fx-font-size: 22px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;" text="Job Application System" textAlignment="CENTER">
+        <VBox.margin>
+            <Insets bottom="10" top="5" />
+        </VBox.margin>
+    </Label>
+    
+    <!-- Main Content Row -->
+    <HBox spacing="20" VBox.vgrow="ALWAYS">
+        
+        <!-- ========== LEFT COLUMN: Personal Information ========== -->
+        <VBox spacing="10" style="-fx-background-color: #f8f9fa; -fx-background-radius: 10; -fx-padding: 15;" HBox.hgrow="ALWAYS">
+            
+            <Label style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;" text="Personal Information" />
+            
+            <Label text="Full Name:" />
+            <TextField fx:id="fullNameField" promptText="Enter your full name" style="-fx-background-radius: 5;" />
+            
+            <Label text="Address:" />
+            <TextArea fx:id="addressArea" prefHeight="60" promptText="Enter your address" wrapText="true" />
+            
+            <Label text="Phone Number:" />
+            <TextField fx:id="phoneField" promptText="e.g., 0599-123456" />
+            
+            <Label text="Marital Status:" />
+            <HBox spacing="15">
+                <RadioButton fx:id="singleRadio" text="Single">
+                    <toggleGroup>
+                        <ToggleGroup fx:id="maritalGroup" />
+                    </toggleGroup>
+                </RadioButton>
+                <RadioButton fx:id="marriedRadio" text="Married" toggleGroup="$maritalGroup" />
+                <RadioButton fx:id="divorcedRadio" text="Divorced" toggleGroup="$maritalGroup" />
+            </HBox>
+            
+            <Label text="Birthdate:" />
+            <DatePicker fx:id="birthDatePicker" prefHeight="30" promptText="Select your birthdate" />
+            
+            <Label text="Profile Image:" />
+            <HBox alignment="CENTER_LEFT" spacing="10">
+                <Button onAction="#uploadImage" style="-fx-background-color: #3498db; -fx-text-fill: white; -fx-background-radius: 5;" text="Upload Image" />
+                <ImageView fx:id="imageView" fitHeight="80" fitWidth="80" preserveRatio="true">
+                    <VBox.margin>
+                        <Insets left="10" />
+                    </VBox.margin>
+                </ImageView>
+            </HBox>
+        </VBox>
+        
+        <!-- ========== RIGHT COLUMN: Skills & Cover Letter ========== -->
+        <VBox spacing="10" style="-fx-background-color: #f8f9fa; -fx-background-radius: 10; -fx-padding: 15;" HBox.hgrow="ALWAYS">
+            
+            <Label style="-fx-font-size: 16px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;" text="Skills &amp; Cover Letter" />
+            
+            <Label text="Select Your Skills:" />
+            <HBox alignment="CENTER" spacing="10">
+                
+                <!-- Available Skills -->
+                <VBox alignment="CENTER" spacing="5" HBox.hgrow="ALWAYS">
+                    <Label style="-fx-font-weight: bold;" text="Available Skills" />
+                    <ListView fx:id="availableSkillsList" prefHeight="150" />
+                </VBox>
+                
+                <!-- Arrow Buttons -->
+                <VBox alignment="CENTER" spacing="10">
+                    <Button onAction="#moveToSelected" style="-fx-background-color: #2ecc71; -fx-text-fill: white; -fx-font-size: 14px; -fx-font-weight: bold;" text="→" />
+                    <Button onAction="#moveToAvailable" style="-fx-background-color: #e74c3c; -fx-text-fill: white; -fx-font-size: 14px; -fx-font-weight: bold;" text="←" />
+                </VBox>
+                
+                <!-- Selected Skills -->
+                <VBox alignment="CENTER" spacing="5" HBox.hgrow="ALWAYS">
+                    <Label style="-fx-font-weight: bold;" text="Selected Skills" />
+                    <ListView fx:id="selectedSkillsList" prefHeight="150" />
+                </VBox>
+            </HBox>
+            
+            <Label text="Cover Letter:" />
+            <Button onAction="#uploadCoverLetter" style="-fx-background-color: #9b59b6; -fx-text-fill: white; -fx-background-radius: 5;" text="Upload Cover Letter" />
+            <TextArea fx:id="coverLetterArea" prefHeight="130" promptText="Your cover letter will appear here..." wrapText="true" />
+            
+            <!-- Controls Row -->
+            <HBox alignment="CENTER" spacing="15">
+                <Label prefHeight="18.0" prefWidth="77.0" text="Font Size:" />
+                <Slider fx:id="fontSizeSlider" blockIncrement="1" majorTickUnit="5" max="30" min="10" minorTickCount="4" prefHeight="38.0" prefWidth="133.0" showTickLabels="true" showTickMarks="true" value="14" />
+                
+                <Label text="Background:" />
+                <ColorPicker fx:id="bgColorPicker" onAction="#changeBackgroundColor" prefHeight="26.0" prefWidth="99.0" />
+            </HBox>
+            
+            <!-- Save Button -->
+            <Button onAction="#saveData" prefHeight="40" style="-fx-background-color: #27ae60; -fx-text-fill: white; -fx-font-size: 15px; -fx-font-weight: bold; -fx-background-radius: 8;" text="💾 Save Application">
+                <VBox.margin>
+                    <Insets top="10" />
+                </VBox.margin>
+            </Button>
+        </VBox>
+    </HBox>
+    
+    <!-- Footer -->
+    <Label alignment="CENTER" style="-fx-font-size: 11px; -fx-text-fill: #7f8c8d;" text="© 2026 Job Application System - Islamic University of Gaza">
+        <VBox.margin>
+            <Insets bottom="5" top="10" />
+        </VBox.margin>
+    </Label>
+</VBox>
