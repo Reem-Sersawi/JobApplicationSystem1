@@ -195,7 +195,7 @@ public class FXMLDocumentController implements Initializable {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("About");
         alert.setHeaderText("Job Application System");
-        alert.setContentText("Developer: Your Name\nPurpose: Job Application System\nUniversity: IUG");
+        alert.setContentText("Developer: Reem S. Alsersawi\nPurpose: Job Application System\nUniversity: IUG");
         alert.showAndWait();
     }
     

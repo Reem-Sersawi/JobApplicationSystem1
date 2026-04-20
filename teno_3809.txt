@@ -1,0 +1,11 @@
+Full Name: teno
+Address: saraya street
+Phone: 0598258821
+Marital Status: Single
+Birthdate: 2005-04-13
+Image: C:\Users\TOP\Downloads\ريم.png
+Skills: C++, Python
+Cover Letter:
+ريم السرساوي  220220656
+طالبة تطوير برمجية سنة تالتة الجامعة الاسلامية
+
